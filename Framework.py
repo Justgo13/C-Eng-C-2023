@@ -1,5 +1,6 @@
 from enum import Enum
 import json
+from PlantHelper import *
 
 
 class Environment:
