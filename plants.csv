@@ -1,0 +1,17 @@
+Plant type,Plant Name,Growth Rate,Maximum Height,Shade tolerance,Precipitation Preference,Temperature Preference,Seeds produced,Seed radius,Seed production time,Lifespan
+Coniferous Tree,Black Spruce,0.3,15,0.6,500-1000,-10 to 15,14,5,30,280
+Deciduous Tree,Sugar Maple,0.4,20,0.9,500-750,0 to 20,17,40,50,200
+Deciduous Tree,Bigtooth Aspen,0.8,30,0.2,600-750,7 to 20,14,35,20,60
+Deciduous Tree,Balsam Poplar,0.7,25,0.3,600-750,6 to 20,14,30,15,70
+Coniferous Tree,Jack Pine,0.6,24,0.2,250-600,-15 to 13,13,6,40,200
+Coniferous Tree,Balsam Fir,0.3,15,0.5,400-1000,-20 to 10,13,25,30,300
+Deciduous Shrub,Speckled Alder,0.7,7,0.3,600-1000,6 to 18,9,3,10,40
+Deciduous Shrub,Hobblebush,0.5,2,0.9,550-800,6  to 20,8,20,2,10
+Evergreen Shrub,Sheep Laurel,0.6,1,0.2,600-900,5 to 21,7,10,1,5
+Deciduous Shrub,Red Elderberry,0.3,3,0.8,400-700,4 to 21,7,30,2,30
+Evergreen Shrub,Leatherleaf,0.5,1,0.2,700-900,5 to 22,6,10,1,7
+Annual Wildflower,Black Medic,0.7,0.8,0.4,300-600,7 to 19,5,10,0.3,1
+Perennial Wildflower ,BunchBerry,0.6,0.2,0.8,400-600,5 to 16,4,7,0.5,3
+Evergreen Lichen,Reindeer Lichen,0.3,0.1,0.9,200-500,-15 to 20,3,0.5,0.2,3
+Evergreen Fern,Ground cedar,0.1,0.1,0.6,400-800,3 to 20,2,2,1,10
+Perennial Fern,Bracken Fern,0.8,1.5,0.4,400-600,7 to 25,3,5,0.5,2
