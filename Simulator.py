@@ -30,6 +30,7 @@ class SimulationState:
 
     def to_dict(self, time: int):
         output = {"time": time}
+        a=-0
         for i in range(len(self.__grid)):
             for j in range(len(self.__grid[i])):
                 output[f'{i},{j}'] = self.__grid[i][j].to_dict()
@@ -72,14 +73,18 @@ if __name__ == '__main__':
         grid_data = json.load(f)
 
     tiles = []
+    for i in range(100):
+        tiles.append([])
+        for j in range(100):
+            tiles[i].append(0)
     for data in grid_data:
+
         p = Plant(data["name"], data["type"], data["properties"]["growthRate"], data["properties"]["maxHeight"],
                   data["properties"]["temperaturePreference"], data["properties"]["shadeTolerance"],
                   data["properties"]["seedsProduced"], data["properties"]["seedRadius"],
                   data["properties"]["seedProductionTime"], data["properties"]["lifespan"],
                   data["properties"]["precipitationPreference"])
-        tiles.append([Tile(p, e)])
-
+        tiles[int(data['x'])][int(data['y'])]=Tile(p, e)
     s = SimulationState(tiles)
     s2 = SimulationRunner(s, 'results.json', 0, 1)
     s2.run()
