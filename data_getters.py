@@ -54,9 +54,3 @@ def get_seed_production_time(df, plant_name):
 
 def get_lifespan(df, plant_name):
     return df.loc[df["Plant Name"] == plant_name.value]['Lifespan'].iloc[0]
-
-
-# if __name__ == '__main__':
-#     data_df = load_data()
-#     x = get_lifespan(data_df, PlantName.BLACK_SPRUCE)
-#     print(x)

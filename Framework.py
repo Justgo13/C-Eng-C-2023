@@ -43,13 +43,13 @@ class PlantName(Enum):
     BLACK_MEDIC = "Black Medic"
     BUNCH_BERRY = "BunchBerry"
     REINDEER_LICHEN = "Reindeer Lichen"
-    GROUND_CEDAR = "Ground Cedar"
+    GROUND_CEDAR = "Ground cedar"
     BRACKEN_FERN = "Bracken Fern"
     NO_TREE = ""
 
 
 class Plant:
-    def __init__(self, name:str, type:PlantName, growth_rate:float, max_growth:float, ideal_temp:float, shade_tol:float, seeds_produced:int, seed_dist:int, seed_prod_time:float, life:float):
+    def __init__(self, name:str, type:PlantName, growth_rate:float, max_growth:float, ideal_temp:float, shade_tol:float, seeds_produced:int, seed_dist:int, seed_prod_time:float, life:float, ideal_precip:float):
         # initialize properties of the plant
         self._name = name
         self._type = type
@@ -61,6 +61,7 @@ class Plant:
         self._seed_dist = seed_dist
         self._seed_prod_time = seed_prod_time
         self._life = life
+        self._ideal_precip = ideal_precip
         # initialize state
         self.init_state()
         pass
@@ -74,7 +75,7 @@ class Plant:
         #todo: @Harjap and @Kevin
         #yuck thats verbose
         next_plant = Plant(self._name, self._type, self._growth_rate, self._max_growth, self._ideal_temp, self._shade_tol,
-              self._seeds_produced, self._seed_dist, self._seed_prod_time, self._life)
+              self._seeds_produced, self._seed_dist, self._seed_prod_time, self._life, self._ideal_precip)
         next_plant.init_state(self.age+1, self.height+1)
         return next_plant
 
