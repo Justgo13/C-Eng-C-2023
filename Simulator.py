@@ -1,6 +1,16 @@
 from Framework import *
+from data_getters import *
+from env_getter import *
+import numpy as np
 import json
 
+class NpEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super(NpEncoder, self).default(obj)
 
 class SimulationState:
     def __init__(self, grid):
@@ -43,7 +53,7 @@ class SimulationRunner:
 
     def save_state(self, past_states:list) -> None:
         with open(self.__outputfile, 'w') as file:
-            file.write(json.dumps(past_states))
+            file.write(json.dumps(past_states,cls=NpEncoder))
             pass
         pass
     pass
@@ -51,9 +61,41 @@ class SimulationRunner:
 
 if __name__ == '__main__':
     #example
-    e = Environment([0,1,2,3,4,5],[2,4,5,78])
-    p = Plant("name", PlantType.SHRUB, 1, 2, 3, 4, 5, 6, 7, 8)
+    
+    # e = Environment([0,1,2,3,4,5],[2,4,5,78])
+    df_env_1 = load_data_env_1()
+    df_env_2 = load_data_env_2()
+    df = load_data()
+
+
+    temperatures_1 = get_temp(df_env_1)
+    temperatures_2 = get_temp(df_env_2)
+
+    precipitation_1 = get_precipitation(df_env_1)
+    precipitation_2 = get_precipitation(df_env_2)
+
+    e = Environment(temperatures_1, precipitation_1)
+
+
+    
+
+    p = Plant("name", PlantName.BALSAM_FIR, 1, 2, 3, 4, 5, 6, 7, 200)
     t= Tile(p,e)
-    s = SimulationState([[t]])
+    # t_list = []
+    # t_list_total = [[]]
+    # for i in range(0,100):
+    #     t_list.append(t)
+    matrix = [[0 for x in range(100)] for y in range(100)]
+    
+    # for i in range(0,100):
+    #     t_list_total[i].append(t_list)
+
+    for x in range(0,100):
+        for y in range(0,100):
+            matrix[x][y] = t
+
+
+    # print(matrix)
+    s = SimulationState(matrix)
     s2 = SimulationRunner(s,'results.json',0,1)
     s2.run()

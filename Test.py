@@ -46,6 +46,8 @@ def get_percent_chance_die_by_prep(upper_prep, lower_prep, prep_today, growth_ra
     return (1- get_factor_for_precipitation(upper_prep, lower_prep, prep_today, growth_rate)) * 0.3
 
 
+def 
+
 if __name__ == "__main__":
    print(get_temp_effect(upper_temp, lower_temp, -11))
 

@@ -70,9 +70,14 @@ class Plant:
         self.height = height
         pass
 
-    def next_state(self, x,y, tiles:dict):
+    def next_state(self, x,y, tiles:list):
         #todo: @Harjap and @Kevin
         #yuck thats verbose
+        if will_plant_die_next_year(self.age, self._life):
+            return Plant(self._name, PlantName.NO_TREE, 0,0,0,0,0,0,0,0)
+        
+        print(tiles[0][1])
+        
         next_plant = Plant(self._name, self._type, self._growth_rate, self._max_growth, self._ideal_temp, self._shade_tol,
               self._seeds_produced, self._seed_dist, self._seed_prod_time, self._life)
         next_plant.init_state(self.age+1, self.height+1)

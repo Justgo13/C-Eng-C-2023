@@ -66,3 +66,4 @@ def does_plant_die(percent_from_prep, percent_from_temp, percent_from_shade):
         return True
     else:
         return False
+
