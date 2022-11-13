@@ -1,40 +1,30 @@
 from enum import Enum
-
-
-class Simulator:
-    def __init__(self):
-        pass
-
-    def __repr__(self) -> str:
-        return ""
-
-    def __str__(self) -> str:
-        return self.__repr__()
+import json
 
 
 class Environment:
-    def __init__(self, temperatures:[], precipitations: [], month:int=0):
+    def __init__(self, temperatures:list, precipitations: list, month: int = 1):
         self.month = month
         self.temperatures = temperatures
         self.precipitations = precipitations
         self.set_month(month)
         pass
-    def set_month(self, month:int)->None:
-        month+=1
-        self.temperature = self.temperatures[month%12]
-        self.precipitation = self.precipitations[month%12]
 
-    def next_state(self, tiles:dict):
+    def set_month(self, month:int)->None:
+        month -= 1
+        self.temperature = self.temperatures[month % len(self.temperatures)]
+        self.precipitation = self.precipitations[month % len(self.temperatures)]
+
+    def next_state(self, x:int, y:int, tiles:list):
         #todo: Harajp and Kevin check pls
         next_env = Environment(self.temperatures, self.precipitations, self.month)
         next_env.set_month(self.month+1)
         return next_env
 
-    def __repr__(self) -> str:
-        return ""
-
-    def __str__(self) -> str:
-        return self.__repr__()
+    def to_dict(self):
+        output = {"temperature": self.temperature,
+                  "precipitation": self.precipitation}
+        return output
 
 
 class PlantType(Enum):
@@ -67,7 +57,7 @@ class Plant:
         self.height = height
         pass
 
-    def next_state(self, tiles:dict):
+    def next_state(self, x,y, tiles:dict):
         #todo: @Harjap and @Kevin
         #yuck thats verbose
         next_plant = Plant(self._name, self._type, self._growth_rate, self._max_growth, self._ideal_temp, self._shade_tol,
@@ -76,12 +66,13 @@ class Plant:
         return next_plant
 
 
-    def __repr__(self)->str:
-        pass
-
-    def __str__(self)->str:
-        return self.__repr__()
-
+    def to_dict(self):
+        output = {
+            "name": self._name,
+            "age": self.age,
+            "height": self.height
+        }
+        return output
     pass
 
 
@@ -91,13 +82,14 @@ class Tile:
         self.environment = environment
         pass
 
-    def next_state(self, tiles:dict):
-        next_plant = self.plant.next_state(tiles)
-        next_environment = self.environment.next_state(tiles)
+    def next_state(self, x:int, y:int, tiles:dict):
+        next_plant = self.plant.next_state(x,y,tiles)
+        next_environment = self.environment.next_state(x,y,tiles)
+
         return Tile(next_plant, next_environment)
 
-    def __repr__(self)->str:
-        return ""
+    def to_dict(self):
+        output = {"plant": self.plant.to_dict(),
+                  "environment": self.environment.to_dict()}
+        return output
 
-    def __str__(self)->str:
-        return  self.__repr__()
