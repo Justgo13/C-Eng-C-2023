@@ -37,16 +37,28 @@ class Environment:
         return self.__repr__()
 
 
-class PlantType(Enum):
-    CONIFEROUS = "CONIFEROUS"
-    SHRUB = "SHRUB"
-    EVERGREEN = "EVERGREEN"
-    WILDFLOWER = "WILDFLOWER"
-    PERENNIAL = "PERENNIAL"
-    LICHEN = "LICHEN"
+class PlantName(Enum):
+    BLACK_SPRUCE = "Black Spruce"
+    SUGAR_MAPLE = "Sugar Maple"
+    BIGTOOTH_ASPEN = "Bigtooth Aspen"
+    BALSAM_POPLAR = "Balsam Poplar"
+    JACK_PINE = "Jack Pine"
+    BALSAM_FIR = "Balsam Fir"
+    SPECKLED_ALDER = "Speckled Alder"
+    HOBBLE_BUSH = "Hobblebush"
+    SHEEP_LAUREL = "Sheep Laurel"
+    RED_ELDERBERRY = "Red Elderberry"
+    LEATHER_LEAF = "Leatherleaf"
+    BLACK_MEDIC = "Black Medic"
+    BUNCH_BERRY = "BunchBerry"
+    REINDEER_LICHEN = "Reindeer Lichen"
+    GROUND_CEDAR = "Ground Cedar"
+    BRACKEN_FERN = "Bracken Fern"
+    NO_TREE = ""
+
 
 class Plant:
-    def __init__(self, name:str, type:PlantType, growth_rate:float, max_growth:float, ideal_temp:float, shade_tol:float, seeds_produced:int, seed_dist:int, seed_prod_time:float, life:float):
+    def __init__(self, name:str, type:PlantName, growth_rate:float, max_growth:float, ideal_temp:float, shade_tol:float, seeds_produced:int, seed_dist:int, seed_prod_time:float, life:float):
         # initialize properties of the plant
         self._name = name
         self._type = type
